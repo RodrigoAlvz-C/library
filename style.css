@@ -2,5 +2,88 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: #222;
+  font-family: roboto;
+}
+
+#body{
+  width: 100vw;
+}
+
+#content{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+#header{
+  height: 5rem;
+  font-size: 3rem;
+  padding-left: 3rem;
+  margin-bottom: 3rem;
+  background-color: #d09dff;
+}
+
+#add{
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5rem;
+}
+
+#add-btn{
+  height: 4rem;
+  width: 4rem;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 99%;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+#main{
+  display:grid;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-bottom: 4rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-columns: 1fr;
+  gap: 4rem;
+}
+
+.card{
+  height: 14rem;
+  width: 24rem;
+  justify-self: center;
+  padding: 1.5rem;
+  background-color: aquamarine;
+}
+
+.delete-btn-div{
+  display: flex;
+  justify-content: end;
+}
+
+.delete-btn{
+  outline: none;
+  border: none;
+  background-color: aquamarine;
+  font-size: 2rem;
+}
+
+#form-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  height: 50%;
+  width: 25%; 
+  border: none;
+}
+
+#form-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.466);
 }
