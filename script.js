@@ -7,28 +7,47 @@ const dialog = document.getElementById("form-dialog");
 const addBook = document.getElementById("add-book-btn");
 
 const library = [];
+const defaultImage = "images/Apple_Cat.webp";
 
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, isRead, src) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.isRead = isRead;
+  this.src = src;
 }
 
 Book.prototype.toggleRead = function () {
-  this.isRead ? (this.isRead = false) : (this.isRead = true);
+  this.isRead = !this.isRead;
 };
 
-const addBookToLibrary = (title, author, pages, isRead) => {
-  const book = new Book(title, author, pages, isRead);
+const addBookToLibrary = (title, author, pages, isRead, src) => {
+  const book = new Book(title, author, pages, isRead, src);
   library.push(book);
+  displayBooks()
 };
 
 const displayBooks = () => {
+  main.textContent = "";
   library.forEach((book, index) => {
     const card = document.createElement("div");
     card.dataset.index = index;
     card.classList.add("card");
+
+    const imageDiv = document.createElement("div");
+    imageDiv.id = "image-div";
+
+    const img = document.createElement("img");
+    img.src = book.src;
+    img.alt = `Cover of ${book.title}`;
+    img.classList.add("card-image");
+
+    img.onerror = () => {
+      img.src = defaultImage;
+    };
+
+    const infoDiv = document.createElement("div");
+    infoDiv.id = "info-div";
 
     const divDel = document.createElement("div");
     divDel.classList.add("delete-btn-div");
@@ -38,7 +57,7 @@ const displayBooks = () => {
     del.classList.add("delete-btn");
     del.addEventListener("click", () => {
       library.splice(index, 1);
-      reloadBooks();
+      displayBooks()
     });
 
     const title = document.createElement("div");
@@ -56,17 +75,20 @@ const displayBooks = () => {
     const status = document.createElement("div");
     status.textContent = `Status: ${book.isRead ? "read" : "not read yet"}`;
     status.addEventListener("click", () => {
-      book.isRead = !book.isRead;
-      reloadBooks();
+      book.toggleRead();
+      displayBooks()
     });
     status.classList.add("card-status");
 
+    imageDiv.appendChild(img);
     divDel.appendChild(del);
-    card.appendChild(divDel);
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(pages);
-    card.appendChild(status);
+    infoDiv.appendChild(divDel);
+    infoDiv.appendChild(title);
+    infoDiv.appendChild(author);
+    infoDiv.appendChild(pages);
+    infoDiv.appendChild(status);
+    card.appendChild(imageDiv);
+    card.appendChild(infoDiv);
     main.appendChild(card);
   });
 };
@@ -90,20 +112,32 @@ const addBookFromForm = () => {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
+  const cover = document.getElementById("cover").value;
   const status = document.getElementById("status").checked;
-  addBookToLibrary(title, author, pages, status);
-  reloadBooks();
+  addBookToLibrary(title, author, pages, status, cover);
   dialog.close();
 };
 
-const reloadBooks = () => {
-  main.textContent = "";
-  displayBooks();
-};
-
-addBookToLibrary("Oathbringer", "Brandon Sanderson", 1248, true);
-addBookToLibrary("The Hero of Ages", "Brandon Sanderson", 741, true);
-addBookToLibrary("Lord of Chaos", "Robert Jordan", 720, true);
+addBookToLibrary(
+  "Oathbringer",
+  "Brandon Sanderson",
+  1248,
+  true,
+  "https://upload.wikimedia.org/wikipedia/en/5/5d/Brandon_Sanderson_Oathbringer_book_cover.jpg"
+);
+addBookToLibrary(
+  "The Hero of Ages",
+  "Brandon Sanderson",
+  741,
+  true,
+  "https://m.media-amazon.com/images/I/91L6dDhrftL._SY425_.jpg"
+);
+addBookToLibrary(
+  "Lord of Chaos",
+  "Robert Jordan",
+  720,
+  true,
+  "https://static.wikia.nocookie.net/wot/images/4/47/LOC_Ebook_cover.jpg/"
+);
 
 dialog.close();
-displayBooks();

@@ -53,11 +53,12 @@
 }
 
 .card{
-  height: 14rem;
-  width: 24rem;
+  height: 16rem;
+  width: 26rem;
   justify-self: center;
-  padding: 1.5rem;
   background-color: aquamarine;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
 }
 
 .delete-btn-div{
@@ -86,4 +87,13 @@
 
 #form-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.466);
+}
+
+#image-div img {
+  height: 100%;
+  width: 100%;
+}
+
+#info-div{
+  padding: 1rem;
 }
