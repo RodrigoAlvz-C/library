@@ -1,30 +1,42 @@
-*{
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Pixelify+Sans:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: roboto;
+  font-family: Roboto;
 }
 
-#body{
+body {
   width: 100vw;
+  background-color: #f0f0f0;
 }
 
-#content{
+#content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
 }
 
-#header{
+#header {
   height: 5rem;
   font-size: 3rem;
   padding-left: 3rem;
   margin-bottom: 3rem;
-  background-color: #d09dff;
+  background-color: #181818;
+  color: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-weight: bolder;
 }
 
-#add{
+.header-icon {
+  fill: white;
+  height: 4rem;
+  padding-right: 1rem;
+}
+
+#add {
   height: 10rem;
   display: flex;
   justify-content: center;
@@ -32,18 +44,32 @@
   padding-bottom: 5rem;
 }
 
-#add-btn{
+#add-btn {
   height: 4rem;
   width: 4rem;
   outline: none;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.096);
   border-radius: 99%;
-  font-size: 2.5rem;
-  font-weight: 300;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.171);
 }
 
-#main{
-  display:grid;
+#add-btn svg {
+  fill: rgba(0, 0, 0, 0.281);
+  height: 2rem;
+}
+
+#add-btn:hover svg {
+  fill: rgba(0, 0, 0, 0.438);
+}
+
+#add-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+#main {
+  display: grid;
   padding-left: 15%;
   padding-right: 15%;
   padding-bottom: 4rem;
@@ -52,25 +78,69 @@
   gap: 4rem;
 }
 
-.card{
+.card {
   height: 16rem;
   width: 26rem;
   justify-self: center;
-  background-color: aquamarine;
+  background-color: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 2fr 3fr;
+  border: #0000002f 1px solid;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 10px #00000048;
 }
 
-.delete-btn-div{
+.delete-btn-div {
   display: flex;
   justify-content: end;
 }
 
-.delete-btn{
+.delete-btn {
   outline: none;
   border: none;
-  background-color: aquamarine;
-  font-size: 2rem;
+  background-color: #fff;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.281);
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.404);
+}
+
+#image-div img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#info-div {
+  padding-left: 1rem;
+  display: grid;
+  grid-template-rows: 0.3fr repeat(4, 1fr);
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card-author,
+.card-pages,
+.card-status {
+  font-weight: 300;
+  justify-self: center;
+  align-self: self-start;
+  overflow: hidden;
+}
+
+.card-status:hover {
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #form-dialog {
@@ -78,22 +148,99 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  height: 50%;
-  width: 25%; 
+  background-color: #181818;
+  height: 60%;
+  width: 25%;
   border: none;
+  box-shadow: 7px 7px 14px rgba(0, 0, 0, 0.349);
 }
 
 #form-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.466);
 }
 
-#image-div img {
-  height: 100%;
+#form {
+  height: 75%;
   width: 100%;
+  display: grid;
+  padding: 2rem;
+  background-color: white;
 }
 
-#info-div{
-  padding: 1rem;
+#form div {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+#form input {
+  height: 2rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.199);
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  outline: none;
+}
+
+#form input:focus {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);
+}
+
+#form label {
+  font-weight: 300;
+  color: #000000b2;
+  font-size: 0.9 rem;
+}
+
+.form-title {
+  background-color: #181818;
+  color: white;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.form-btns {
+  background-color: rgb(255, 255, 255);
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.form-btns button {
+  border: none;
+  outline: none;
+  background-color: #181818;
+  color: white;
+  height: 3rem;
+  width: 8rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.form-btns button:hover {
+  border: 1px solid black;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.555);
+  background-color: white;
+  color: #181818;
+}
+
+#status-div {
+  display: flex;
+  align-items: center;
+}
+
+#status-div input {
+  accent-color: black;
+  transform: scale(1.8);
+}
+
+#status-div input:focus {
+  border: none;
+  box-shadow: none;
 }
